@@ -367,12 +367,9 @@
       <div id="scoreBreakdown"></div>
     </div>
     <div class="card">
-      <h3 style="color:var(--emerald);margin-top:0;">Submit to Teacher</h3>
-      <p class="small-note">Click "Submit Results" to send your results directly to your teacher. If it doesn't seem to go through (e.g. no internet connection), download the results file below and send it to your teacher manually instead.</p>
-      <div class="row-btns">
-        <button class="btn-primary" id="submitSheetBtn">Submit Results</button>
-      </div>
-      <div class="feedback" id="submitStatus" style="margin-top:8px;"></div>
+      <h3 style="color:var(--emerald);margin-top:0;">Submission to Teacher</h3>
+      <div class="feedback" id="submitStatus">Submitting your results…</div>
+      <p class="small-note" id="submitFallbackNote" style="display:none;">If submission doesn't go through (e.g. no internet connection), download the results file below and send it to your teacher manually instead.</p>
       <div class="field" style="margin-top:18px;">
         <label>Results Preview</label>
         <textarea id="reportBox" readonly></textarea>
@@ -959,43 +956,39 @@ function finishQuiz(){
     URL.revokeObjectURL(url);
   }
 
-  document.getElementById('submitSheetBtn').onclick = ()=>{
-    const statusEl = document.getElementById('submitStatus');
-    const btn = document.getElementById('submitSheetBtn');
-    btn.disabled = true;
-    statusEl.textContent = "Submitting…";
-    statusEl.className = "feedback";
+  const statusEl = document.getElementById('submitStatus');
+  const fallbackNote = document.getElementById('submitFallbackNote');
 
-    const payload = {
-      name, cls,
-      surah: surah.englishName,
-      wordMeaning: `${wm.correctFirst}/${wm.total}`,
-      wordType: `${wt.correctFirst}/${wt.total}`,
-      ayahTranslation: `${at.correctFirst}/${at.total}`,
-      ayahArrange: `${wa.correctFirst}/${wa.total}`,
-      totalFirst: `${totalFirst}/${totalMCQ}`,
-      totalEver: `${totalEver}/${totalMCQ}`,
-      reflections: reflectionsText.trim()
-    };
-
-    // mode:'no-cors' is used deliberately: Apps Script Web Apps don't return
-    // CORS headers, so a normal 'cors' fetch would reject even after a
-    // successful submission. 'no-cors' lets the request go through and
-    // resolves regardless, since we don't need to read the response back.
-    fetch(SHEET_WEBAPP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(payload)
-    }).then(()=>{
-      statusEl.textContent = "Results submitted ✅";
-      statusEl.className = "feedback correct";
-      btn.textContent = "Submitted";
-    }).catch(()=>{
-      statusEl.textContent = "Couldn't submit — check your internet connection, or use Download/Copy below instead.";
-      statusEl.className = "feedback incorrect";
-      btn.disabled = false;
-    });
+  const payload = {
+    name, cls,
+    surah: surah.englishName,
+    wordMeaning: `${wm.correctFirst}/${wm.total}`,
+    wordType: `${wt.correctFirst}/${wt.total}`,
+    ayahTranslation: `${at.correctFirst}/${at.total}`,
+    ayahArrange: `${wa.correctFirst}/${wa.total}`,
+    totalFirst: `${totalFirst}/${totalMCQ}`,
+    totalEver: `${totalEver}/${totalMCQ}`,
+    reflections: reflectionsText.trim()
   };
+
+  // Submission happens automatically as soon as the results screen loads —
+  // no button required. mode:'no-cors' is used deliberately: Apps Script
+  // Web Apps don't return CORS headers, so a normal 'cors' fetch would
+  // reject even after a successful submission. 'no-cors' lets the request
+  // go through and resolves regardless, since we don't need to read the
+  // response back.
+  fetch(SHEET_WEBAPP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: JSON.stringify(payload)
+  }).then(()=>{
+    statusEl.textContent = "Results submitted to your teacher ✅";
+    statusEl.className = "feedback correct";
+  }).catch(()=>{
+    statusEl.textContent = "Couldn't submit automatically — check your internet connection.";
+    statusEl.className = "feedback incorrect";
+    fallbackNote.style.display = 'block';
+  });
 
   document.getElementById('downloadBtn').onclick = downloadReport;
 
