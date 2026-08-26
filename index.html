@@ -726,7 +726,11 @@ function wireStepEvents(step){
         actionRow.innerHTML = `<button class="btn-primary" id="confirmArrangeBtn">Confirm Answer</button>`;
         document.getElementById('confirmArrangeBtn').addEventListener('click', ()=>{
           ans.attempts++;
-          const isCorrect = ans.placed.every((v,i)=>v===i);
+          // Compare by word text, not by which specific tile/index was
+          // used — some ayahs repeat a word (e.g. Al-'Asr's وَتَوَاصَوْا۟
+          // appears twice), and either instance should be valid at either
+          // matching slot.
+          const isCorrect = ans.placed.every((idx,i)=>words[idx]===words[i]);
           if(isCorrect){
             ans.status = 'correct';
             if(ans.attempts===1) ans.firstTry = true;
