@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qur'anic Arabic Quiz — Al-Takāthur, Al-'Asr & Al-Kawthar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* AtTartil teaching-materials palette */
+    --parchment:#faf6ea;
+    --parchment-deep:#f1e9d0;
+    --card:#fffdf6;
+    --teal:#0e6f68;
+    --teal-deep:#0a5750;
+    --teal-tint:#e7f2f0;
+    --gold:#c9a227;
+    --gold-tint:#f4e9c3;
+    --emerald:#123c30;
+    --emerald-deep:#0b2a22;
+    --text:#233029;
+    --muted:#72806f;
+    --border:#ddd0a4;
+    --danger:#a8342b;
+    --success:#0e6f68;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Lora',serif;
+    background:linear-gradient(180deg,var(--parchment) 0%,var(--parchment-deep) 100%);
+    color:var(--text);
+    min-height:100vh;
+    line-height:1.55;
+  }
+  .arabic{
+    font-family:'Amiri',serif;
+    direction:rtl;
+    unicode-bidi:isolate;
+  }
+  .wrap{
+    max-width:780px;
+    margin:0 auto;
+    padding:26px 20px 64px;
+  }
+  header.top{
+    text-align:center;
+    padding:26px 16px 18px;
+    border-bottom:3px solid var(--gold);
+    margin-bottom:22px;
+  }
+  header.top h1{
+    font-family:'Lora',serif;
+    font-weight:700;
+    font-size:1.65rem;
+    color:var(--emerald);
+    margin:0 0 6px;
+    letter-spacing:.01em;
+  }
+  header.top p{
+    color:var(--teal-deep);
+    margin:0;
+    font-size:.95rem;
+    font-style:italic;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-top:4px solid var(--emerald);
+    border-radius:var(--radius);
+    padding:26px;
+    margin-bottom:20px;
+    box-shadow:0 3px 14px rgba(18,60,48,0.07);
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-weight:600;
+    font-size:.9rem;
+    margin-bottom:7px;
+    color:var(--emerald);
+  }
+  .field input[type=text]{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--border);
+    border-radius:10px;
+    font-family:'Lora',serif;
+    font-size:1rem;
+    background:#fffefb;
+  }
+  .field input:focus{outline:2px solid var(--gold-tint);border-color:var(--teal);}
+  .surah-options{display:grid;gap:13px;margin-top:8px;}
+  .surah-card{
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:15px 18px;
+    cursor:pointer;
+    transition:.15s;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    background:#fffefb;
+  }
+  .surah-card:hover{border-color:var(--teal);}
+  .surah-card.selected{
+    border-color:var(--teal);
+    background:var(--teal-tint);
+  }
+  .surah-card .sname{font-weight:600;color:var(--emerald);}
+  .surah-card .sarabic{font-family:'Amiri',serif;font-size:1.4rem;color:var(--teal-deep);direction:rtl;}
+  button{
+    font-family:'Lora',serif;
+    cursor:pointer;
+    border:none;
+    border-radius:10px;
+    font-weight:600;
+    font-size:.95rem;
+    transition:.15s;
+  }
+  .btn-primary{
+    background:var(--teal);
+    color:#fff;
+    padding:14px 22px;
+    width:100%;
+    letter-spacing:.01em;
+  }
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-primary:disabled{background:#b7c4c1;cursor:not-allowed;}
+  .btn-secondary{
+    background:transparent;
+    color:var(--teal-deep);
+    border:1.5px solid var(--teal);
+    padding:11px 18px;
+  }
+  .btn-secondary:hover{background:var(--teal-tint);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--muted);
+    text-decoration:underline;
+    padding:6px 4px;
+    font-size:.85rem;
+  }
+  .progress-bar{
+    height:7px;
+    background:var(--border);
+    border-radius:4px;
+    overflow:hidden;
+    margin-bottom:20px;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--gold);
+    transition:width .3s;
+  }
+  .section-tag{
+    display:inline-block;
+    background:var(--gold-tint);
+    color:var(--emerald-deep);
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:5px 12px;
+    border-radius:20px;
+    margin-bottom:12px;
+    border:1px solid var(--gold);
+  }
+  .ayah-box{
+    background:var(--teal-tint);
+    border-left:4px solid var(--teal);
+    padding:18px;
+    border-radius:8px;
+    margin-bottom:18px;
+  }
+  .ayah-box .ar{
+    font-family:'Amiri',serif;
+    font-size:1.9rem;
+    line-height:2.6;
+    color:var(--emerald);
+    margin-bottom:6px;
+    direction:rtl;
+    unicode-bidi:isolate;
+  }
+  .ayah-box .num{
+    color:var(--muted);
+    font-size:.8rem;
+  }
+  .q-prompt{
+    font-weight:600;
+    margin-bottom:15px;
+    font-size:1.02rem;
+    color:var(--text);
+  }
+  .options{display:grid;gap:11px;margin-bottom:15px;}
+  .opt{
+    text-align:left;
+    padding:13px 15px;
+    border:1.5px solid var(--border);
+    border-radius:10px;
+    background:#fffefb;
+    font-size:.96rem;
+    font-family:'Lora',serif;
+  }
+  .opt:hover{border-color:var(--teal);}
+  .opt.chosen{border-color:var(--teal);background:var(--teal-tint);}
+  .opt.correct-flash{border-color:var(--success);background:#e2f1ee;}
+  .opt.incorrect-flash{border-color:var(--danger);background:#f9e9e7;}
+  .opt:disabled{cursor:default;}
+  .answer-strip{
+    min-height:64px;
+    border:2px dashed var(--teal);
+    border-radius:10px;
+    background:var(--teal-tint);
+    padding:12px;
+    margin-bottom:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    direction:rtl;
+    align-items:center;
+  }
+  .placeholder-text{
+    font-family:'Lora',serif;
+    color:var(--muted);
+    font-size:.85rem;
+    font-style:italic;
+    direction:ltr;
+  }
+  .word-pool{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    direction:rtl;
+    margin-bottom:14px;
+    min-height:44px;
+  }
+  .word-tile{
+    font-family:'Amiri',serif;
+    font-size:1.35rem;
+    padding:8px 16px;
+    border:1.5px solid var(--border);
+    border-radius:10px;
+    background:#fffefb;
+    color:var(--emerald);
+    cursor:pointer;
+  }
+  .word-tile:hover{border-color:var(--teal);}
+  .word-tile.placed-tile{
+    background:var(--card);
+    border-color:var(--teal);
+  }
+  .word-tile.locked-correct{border-color:var(--success);background:#e2f1ee;cursor:default;}
+  .word-tile.locked-incorrect{border-color:var(--danger);background:#f9e9e7;cursor:default;}
+  .feedback{
+    font-weight:600;
+    font-size:.92rem;
+    margin-bottom:10px;
+    min-height:20px;
+  }
+  .feedback.correct{color:var(--success);}
+  .feedback.incorrect{color:var(--danger);}
+  .row-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .row-btns button{flex:1;min-width:120px;}
+  textarea{
+    width:100%;
+    min-height:100px;
+    padding:13px;
+    border:1.5px solid var(--border);
+    border-radius:10px;
+    font-family:'Lora',serif;
+    font-size:.96rem;
+    resize:vertical;
+    background:#fffefb;
+  }
+  .no-marks-note{
+    font-size:.82rem;
+    color:var(--teal-deep);
+    font-style:italic;
+    margin-bottom:14px;
+    background:var(--gold-tint);
+    border:1px solid var(--gold);
+    border-radius:8px;
+    padding:10px 12px;
+  }
+  .nav-bottom{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:8px;
+  }
+  .hidden{display:none !important;}
+  .summary-line{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.94rem;
+  }
+  .summary-line:last-child{border-bottom:none;}
+  .score-big{
+    text-align:center;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--emerald);
+    margin:8px 0 2px;
+    font-family:'Lora',serif;
+  }
+  .score-sub{text-align:center;color:var(--muted);font-size:.86rem;margin-bottom:18px;}
+  #reportBox{
+    width:100%;
+    min-height:220px;
+    font-family:'Courier New',monospace;
+    font-size:.78rem;
+    padding:13px;
+    border:1.5px solid var(--border);
+    border-radius:10px;
+    background:var(--teal-tint);
+    white-space:pre-wrap;
+  }
+  .small-note{font-size:.8rem;color:var(--muted);margin-top:9px;}
+  .qcounter{font-size:.82rem;color:var(--muted);margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Qur'anic Arabic Quiz</h1>
+    <p>Al-Takāthur &middot; Al-'Asr &middot; Al-Kawthar</p>
+  </header>
+
+  <!-- START SCREEN -->
+  <div id="screen-start">
+    <div class="card">
+      <div class="field">
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" placeholder="Enter your full name">
+      </div>
+      <div class="field">
+        <label for="studentClass">Class</label>
+        <input type="text" id="studentClass" placeholder="Enter your class">
+      </div>
+      <div class="field">
+        <label>Choose a Surah to attempt</label>
+        <div class="surah-options" id="surahOptions"></div>
+      </div>
+      <button class="btn-primary" id="startBtn" disabled>Start Quiz</button>
+      <p class="small-note" style="text-align:center;margin-top:10px;">You can only attempt one Surah at a time.</p>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="screen-quiz" class="hidden">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div id="quizArea"></div>
+  </div>
+
+  <!-- END SCREEN -->
+  <div id="screen-end" class="hidden">
+    <div class="card">
+      <h2 style="color:var(--emerald);margin-top:0;">Quiz Complete</h2>
+      <div class="score-big" id="scoreBig">0/0</div>
+      <div class="score-sub" id="scoreSub">correct on first attempt</div>
+      <div id="scoreBreakdown"></div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--emerald);margin-top:0;">Submit to Teacher</h3>
+      <p class="small-note">Click "Submit Results" to send your results directly to your teacher. If it doesn't seem to go through (e.g. no internet connection), download the results file below and send it to your teacher manually instead.</p>
+      <div class="row-btns">
+        <button class="btn-primary" id="submitSheetBtn">Submit Results</button>
+      </div>
+      <div class="feedback" id="submitStatus" style="margin-top:8px;"></div>
+      <div class="field" style="margin-top:18px;">
+        <label>Results Preview</label>
+        <textarea id="reportBox" readonly></textarea>
+      </div>
+      <div class="row-btns">
+        <button class="btn-secondary" id="downloadBtn">Download Results (.txt)</button>
+        <button class="btn-secondary" id="copyBtn">Copy to Clipboard</button>
+      </div>
+      <div class="row-btns">
+        <button class="btn-ghost" id="restartBtn">Attempt Another Surah</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= CONFIGURATION ================= */
+// Google Apps Script Web App URL — results are submitted here as new rows
+// in the linked Google Sheet.
+const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzQab0PtSML0qs3EYktLJtITTRVuMM_X4-b1jZoxjcBufo4ZUT_C_g4SeQFDmHxXKrNAg/exec";
+
+/* ================= SURAH DATA ================= */
+const SURAHS = {
+  kawthar: {
+    id:"kawthar",
+    englishName:"Surah Al-Kawthar (108)",
+    arabicName:"سُورَةُ الْكَوْثَر",
+    subtitle:"Abundance",
+    ayahs:[
+      {num:1, ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", en:"Indeed, We have granted you ˹O Prophet˺ abundant goodness."},
+      {num:2, ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", en:"So pray and sacrifice to your Lord ˹alone˺."},
+      {num:3, ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", en:"Only the one who hates you is truly cut off ˹from any goodness˺."}
+    ],
+    wordMeaning:[
+      {word:"أَعْطَيْنَٰكَ", correct:"We have granted you", options:["We have granted you","You have granted us","We will grant you","They granted you"]},
+      {word:"ٱلْكَوْثَرَ", correct:"abundant goodness", options:["abundant goodness","a small river","the enemy","patience"]},
+      {word:"صَلِّ", correct:"pray", options:["pray","sacrifice","give","wait"]},
+      {word:"ٱنْحَرْ", correct:"sacrifice", options:["sacrifice","pray","fast","travel"]},
+      {word:"شَانِئَكَ", correct:"the one who hates you", options:["the one who hates you","the one who loves you","your friend","your Lord"]},
+      {word:"ٱلْأَبْتَرُ", correct:"cut off (from all good)", options:["cut off (from all good)","abundant in goodness","victorious","patient"]}
+    ],
+    wordType:[
+      {word:"أَعْطَيْنَٰكَ", correct:"Fi'l (Verb)"},
+      {word:"ٱلْكَوْثَرَ", correct:"Ism (Noun)"},
+      {word:"صَلِّ", correct:"Fi'l (Verb)"},
+      {word:"إِنَّ", correct:"Harf (Particle)"},
+      {word:"لِ (in لِرَبِّكَ)", correct:"Harf (Particle)"},
+      {word:"شَانِئَكَ", correct:"Ism (Noun)"},
+      {word:"هُوَ", correct:"Ism (Noun)"}
+    ],
+    ayahTranslation:[
+      {ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", correct:"Indeed, We have granted you ˹O Prophet˺ abundant goodness.", options:["Indeed, We have granted you ˹O Prophet˺ abundant goodness.","Indeed, We have tested you with great hardship.","Indeed, We have forgiven you a grave sin.","Indeed, We have chosen you above all people."]},
+      {ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", correct:"So pray and sacrifice to your Lord ˹alone˺.", options:["So pray and sacrifice to your Lord ˹alone˺.","So fast and give charity for your Lord's sake.","So travel and seek knowledge for your Lord.","So be patient and grateful to your Lord."]},
+      {ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", correct:"Only the one who hates you is truly cut off ˹from any goodness˺.", options:["Only the one who hates you is truly cut off ˹from any goodness˺.","Only the one who helps you will be rewarded.","Only the one who follows you will succeed.","Only the one who loves you is truly blessed."]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", prompt:"Allah reminds the Prophet ﷺ of a great blessing given to him. What lesson can we learn about recognising Allah's blessings in our own lives?"},
+      {ref:"Ayah 2", ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", prompt:"This ayah links gratitude for blessings to worship (prayer and sacrifice). What does this teach us about how we should respond when we receive blessings?"},
+      {ref:"Ayah 3", ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", prompt:"This ayah addresses those who mocked the Prophet ﷺ. What takeaway can we draw about how Allah judges true honour and legacy?"}
+    ]
+  },
+
+  asr: {
+    id:"asr",
+    englishName:"Surah Al-'Asr (103)",
+    arabicName:"سُورَةُ الْعَصْر",
+    subtitle:"Time",
+    ayahs:[
+      {num:1, ar:"وَٱلْعَصْرِ", en:"By the ˹passage of˺ time!"},
+      {num:2, ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", en:"Surely humanity is in ˹grave˺ loss,"},
+      {num:3, ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", en:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance."}
+    ],
+    wordMeaning:[
+      {word:"ٱلْعَصْرِ", correct:"time", options:["time","the night","wealth","patience"]},
+      {word:"ٱلْإِنسَٰنَ", correct:"mankind / humanity", options:["mankind / humanity","the believer","the disbeliever","the Prophet"]},
+      {word:"خُسْرٍ", correct:"loss", options:["loss","gain","guidance","reward"]},
+      {word:"ءَامَنُوا۟", correct:"they believed", options:["they believed","they disbelieved","they forgot","they travelled"]},
+      {word:"ٱلصَّٰلِحَٰتِ", correct:"righteous deeds", options:["righteous deeds","harmful deeds","empty words","wealth"]},
+      {word:"ٱلصَّبْرِ", correct:"patience / perseverance", options:["patience / perseverance","haste","anger","wealth"]}
+    ],
+    wordType:[
+      {word:"وَ (in وَٱلْعَصْرِ)", correct:"Harf (Particle)"},
+      {word:"ٱلْعَصْرِ", correct:"Ism (Noun)"},
+      {word:"إِنَّ", correct:"Harf (Particle)"},
+      {word:"ٱلْإِنسَٰنَ", correct:"Ism (Noun)"},
+      {word:"ءَامَنُوا۟", correct:"Fi'l (Verb)"},
+      {word:"تَوَاصَوْا۟", correct:"Fi'l (Verb)"},
+      {word:"ٱلَّذِينَ", correct:"Ism (Noun)"}
+    ],
+    ayahTranslation:[
+      {ar:"وَٱلْعَصْرِ", correct:"By the ˹passage of˺ time!", options:["By the ˹passage of˺ time!","By the light of day!","By the darkness of night!","By the mercy of Allah!"]},
+      {ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", correct:"Surely humanity is in ˹grave˺ loss,", options:["Surely humanity is in ˹grave˺ loss,","Surely humanity is truly blessed,","Surely humanity will be forgiven,","Surely humanity is asleep,"]},
+      {ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", correct:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.", options:["except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.","except those who are wealthy and give charity generously.","except those who pray five times and fast every Monday.","except those who repent sincerely and seek forgiveness daily."]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"وَٱلْعَصْرِ", prompt:"Allah swears by time itself. What does this teach us about the value and importance of time in our lives?"},
+      {ref:"Ayah 2", ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", prompt:"Allah describes mankind, in general, as being in loss. What could this loss refer to, and how does it relate to how we spend our lives?"},
+      {ref:"Ayah 3", ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", prompt:"Four qualities are mentioned as the way out of loss. What practical steps can you take to embody these four qualities in your daily life?"}
+    ]
+  },
+
+  takathur: {
+    id:"takathur",
+    englishName:"Surah Al-Takāthur (102)",
+    arabicName:"سُورَةُ التَّكَاثُر",
+    subtitle:"Competition for More",
+    ayahs:[
+      {num:1, ar:"أَلْهَىٰكُمُ ٱلتَّكَاثُرُ", en:"Competition for more ˹gains˺ diverts you ˹from Allah˺,"},
+      {num:2, ar:"حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ", en:"until you end up in ˹your˺ graves."},
+      {num:3, ar:"كَلَّا سَوْفَ تَعْلَمُونَ", en:"But no! You will soon come to know."},
+      {num:4, ar:"ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ", en:"Again, no! You will soon come to know."},
+      {num:5, ar:"كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ", en:"Indeed, if you were to know ˹your fate˺ with certainty, ˹you would have acted differently˺."},
+      {num:6, ar:"لَتَرَوُنَّ ٱلْجَحِيمَ", en:"˹But˺ you will surely see the Hellfire."},
+      {num:7, ar:"ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ", en:"Again, you will surely see it with the eye of certainty."},
+      {num:8, ar:"ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ", en:"Then, on that Day, you will definitely be questioned about ˹your worldly˺ pleasures."}
+    ],
+    wordMeaning:[
+      {word:"أَلْهَىٰكُمُ", correct:"diverts / distracts you", options:["diverts / distracts you","reminds you","strengthens you","tests you"]},
+      {word:"ٱلتَّكَاثُرُ", correct:"competition for increase", options:["competition for increase","patience","gratitude","worship"]},
+      {word:"ٱلْمَقَابِرَ", correct:"the graves", options:["the graves","the markets","the mountains","the gardens"]},
+      {word:"تَعْلَمُونَ", correct:"you will know", options:["you will know","you will forget","you will fear","you will travel"]},
+      {word:"ٱلْيَقِينِ", correct:"certainty", options:["certainty","doubt","hope","patience"]},
+      {word:"ٱلْجَحِيمَ", correct:"the Hellfire", options:["the Hellfire","Paradise","the grave","the Day of Judgment"]},
+      {word:"ٱلنَّعِيمِ", correct:"blessings / pleasures", options:["blessings / pleasures","sins","hardships","losses"]},
+      {word:"لَتُسْـَٔلُنَّ", correct:"you will surely be questioned", options:["you will surely be questioned","you will surely be forgiven","you will surely be rewarded","you will surely be punished"]}
+    ],
+    wordType:[
+      {word:"أَلْهَىٰكُمُ", correct:"Fi'l (Verb)"},
+      {word:"ٱلتَّكَاثُرُ", correct:"Ism (Noun)"},
+      {word:"سَوْفَ", correct:"Harf (Particle)"},
+      {word:"تَعْلَمُونَ", correct:"Fi'l (Verb)"},
+      {word:"لَوْ", correct:"Harf (Particle)"},
+      {word:"ٱلْيَقِينِ", correct:"Ism (Noun)"},
+      {word:"عَنِ", correct:"Harf (Particle)"},
+      {word:"ٱلنَّعِيمِ", correct:"Ism (Noun)"}
+    ],
+    ayahTranslation:[
+      {ar:"أَلْهَىٰكُمُ ٱلتَّكَاثُرُ", correct:"Competition for more ˹gains˺ diverts you ˹from Allah˺,", options:["Competition for more ˹gains˺ diverts you ˹from Allah˺,","Gratitude for blessings draws you closer to Allah,","Fear of loss keeps you away from sin,","Remembrance of death softens your heart,"]},
+      {ar:"حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ", correct:"until you end up in ˹your˺ graves.", options:["until you end up in ˹your˺ graves.","until you reach old age.","until the Day of Judgment arrives.","until you repent sincerely."]},
+      {ar:"كَلَّا سَوْفَ تَعْلَمُونَ", correct:"But no! You will soon come to know.", options:["But no! You will soon come to know.","Indeed, you have already understood.","But no! You will never come to know.","Soon you will forget everything."]},
+      {ar:"ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ", correct:"Again, no! You will soon come to know.", options:["Again, no! You will soon come to know.","Again, indeed, you have understood.","Once more, you are forgiven.","Again, you will be tested."]},
+      {ar:"كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ", correct:"Indeed, if you were to know ˹your fate˺ with certainty, ˹you would have acted differently˺.", options:["Indeed, if you were to know ˹your fate˺ with certainty, ˹you would have acted differently˺.","Indeed, if you were patient, you would be rewarded.","Indeed, if you were grateful, you would be blessed.","Indeed, if you were to ask, you would be answered."]},
+      {ar:"لَتَرَوُنَّ ٱلْجَحِيمَ", correct:"˹But˺ you will surely see the Hellfire.", options:["˹But˺ you will surely see the Hellfire.","˹But˺ you will surely see Paradise.","˹But˺ you will surely forget the Hellfire.","˹But˺ you will surely avoid the Hellfire."]},
+      {ar:"ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ", correct:"Again, you will surely see it with the eye of certainty.", options:["Again, you will surely see it with the eye of certainty.","Again, you will surely doubt what you see.","Again, you will surely hear about it from others.","Again, you will surely dream about it."]},
+      {ar:"ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ", correct:"Then, on that Day, you will definitely be questioned about ˹your worldly˺ pleasures.", options:["Then, on that Day, you will definitely be questioned about ˹your worldly˺ pleasures.","Then, on that Day, you will definitely be rewarded for your patience.","Then, on that Day, you will definitely be forgiven for your sins.","Then, on that Day, you will definitely be reunited with your family."]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"أَلْهَىٰكُمُ ٱلتَّكَاثُرُ", prompt:"This ayah warns about being 'diverted' by competition for worldly increase. What are some modern-day examples of things that can divert us from Allah?"},
+      {ref:"Ayah 2", ar:"حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ", prompt:"This competition continues 'until you visit the graves' — i.e. until death. What does this teach us about how we should view worldly pursuits in light of death?"},
+      {ref:"Ayahs 3–4", ar:"كَلَّا سَوْفَ تَعْلَمُونَ ۝ ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ", prompt:"This warning ('you will soon know') is repeated twice. Why do you think Allah repeats this warning, and what effect should it have on us?"},
+      {ref:"Ayah 5", ar:"كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ", prompt:"This ayah speaks of knowing something 'with certainty' (yaqīn). How can striving for certainty in faith change the way we live?"},
+      {ref:"Ayahs 6–7", ar:"لَتَرَوُنَّ ٱلْجَحِيمَ ۝ ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ", prompt:"These ayahs describe seeing the Hellfire, first in general and then 'with the eye of certainty'. What does this progression teach us about the reality of the Hereafter?"},
+      {ref:"Ayah 8", ar:"ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ", prompt:"The final ayah states we will be questioned about our worldly pleasures/blessings. What practical steps can we take to prepare for this questioning?"}
+    ]
+  }
+};
+
+/* ================= STATE ================= */
+let state = null;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+/* ================= BUILD SURAH SELECTION ================= */
+const surahOptionsEl = document.getElementById('surahOptions');
+let selectedSurahKey = null;
+Object.values(SURAHS).forEach(s=>{
+  const div = document.createElement('div');
+  div.className = 'surah-card';
+  div.innerHTML = `<div><div class="sname">${s.englishName}</div><div style="color:var(--muted);font-size:.82rem;">${s.subtitle}</div></div><div class="sarabic">${s.arabicName}</div>`;
+  div.addEventListener('click', ()=>{
+    document.querySelectorAll('.surah-card').forEach(c=>c.classList.remove('selected'));
+    div.classList.add('selected');
+    selectedSurahKey = s.id;
+    checkStartReady();
+  });
+  surahOptionsEl.appendChild(div);
+});
+
+const nameInput = document.getElementById('studentName');
+const classInput = document.getElementById('studentClass');
+const startBtn = document.getElementById('startBtn');
+[nameInput, classInput].forEach(el=>el.addEventListener('input', checkStartReady));
+
+function checkStartReady(){
+  startBtn.disabled = !(nameInput.value.trim() && classInput.value.trim() && selectedSurahKey);
+}
+
+startBtn.addEventListener('click', ()=>{
+  initQuiz(selectedSurahKey, nameInput.value.trim(), classInput.value.trim());
+});
+
+/* ================= QUIZ ENGINE ================= */
+function initQuiz(surahKey, name, cls){
+  const surah = SURAHS[surahKey];
+
+  // Build a flat list of question "steps"
+  const steps = [];
+  surah.wordMeaning.forEach((q,i)=>steps.push({type:'wordMeaning', data:q, section:"Word Meaning", index:i}));
+  surah.wordType.forEach((q,i)=>steps.push({type:'wordType', data:q, section:"Word Type: Ism / Fi'l / Harf", index:i}));
+  surah.ayahTranslation.forEach((q,i)=>steps.push({type:'ayahTranslation', data:q, section:"Ayah Translation", index:i}));
+  surah.ayahs
+    .filter(a=>a.ar.split(' ').filter(Boolean).length>=2)
+    .forEach((a,i)=>steps.push({type:'wordArrange', data:{ayah:a, words:a.ar.split(' ').filter(Boolean)}, section:"Ayah Arrangement (Memorisation)", index:i}));
+  surah.takeaways.forEach((q,i)=>steps.push({type:'takeaway', data:q, section:"Takeaways & Practical Application", index:i}));
+
+  state = {
+    name, cls, surah,
+    steps,
+    current:0,
+    answers: steps.map(s=>{
+      if(s.type==='wordArrange'){
+        const n = s.data.words.length;
+        return {attempts:0, status:'unanswered', shuffledOrder:shuffle([...Array(n).keys()]), placed:[]};
+      }
+      return {attempts:0, status:'unanswered', selected:null, openText:''};
+    })
+  };
+
+  document.getElementById('screen-start').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  renderStep();
+}
+
+function renderStep(){
+  const {steps, current, surah} = state;
+  const step = steps[current];
+  const area = document.getElementById('quizArea');
+  document.getElementById('progressFill').style.width = ((current)/steps.length*100)+'%';
+
+  let html = `<div class="card">`;
+  html += `<div class="section-tag">${step.section}</div>`;
+  html += `<div class="qcounter">Question ${current+1} of ${steps.length} &middot; ${surah.englishName}</div>`;
+
+  if(step.type === 'wordMeaning'){
+    html += `<div class="ayah-box"><div class="ar">${step.data.word}</div></div>`;
+    html += `<div class="q-prompt">What does this word mean?</div>`;
+    html += renderOptions(step.data.options, step.data.correct);
+  }
+  else if(step.type === 'wordType'){
+    html += `<div class="ayah-box"><div class="ar">${step.data.word}</div></div>`;
+    html += `<div class="q-prompt">Identify the word type:</div>`;
+    html += renderOptions(["Ism (Noun)","Fi'l (Verb)","Harf (Particle)"], step.data.correct, true);
+  }
+  else if(step.type === 'ayahTranslation'){
+    html += `<div class="ayah-box"><div class="ar">${step.data.ar}</div></div>`;
+    html += `<div class="q-prompt">Which is the correct translation (Dr. Mustafa Khattab, The Clear Qur'an) of this ayah?</div>`;
+    html += renderOptions(step.data.options, step.data.correct);
+  }
+  else if(step.type === 'wordArrange'){
+    html += `<div class="ayah-box"><div class="num">Ayah ${step.data.ayah.num}</div></div>`;
+    html += `<div class="q-prompt">Tap the words below, in order, to rebuild this ayah from memory.</div>`;
+    html += `<div class="answer-strip" id="answerStrip"></div>`;
+    html += `<div class="word-pool" id="wordPool"></div>`;
+    html += `<div style="margin-bottom:6px;"><button class="btn-ghost" id="clearArrangeBtn">Clear</button></div>`;
+  }
+  else if(step.type === 'takeaway'){
+    html += `<div class="ayah-box"><div class="num">${step.data.ref}</div><div class="ar">${step.data.ar}</div></div>`;
+    html += `<div class="no-marks-note">This question does not carry any marks. No feedback or "correct answer" will be shown — write your own honest reflection.</div>`;
+    html += `<div class="q-prompt">${step.data.prompt}</div>`;
+    html += `<textarea id="openAnswer" placeholder="Write your reflection here...">${state.answers[current].openText}</textarea>`;
+  }
+
+  html += `<div class="feedback" id="feedbackMsg"></div>`;
+  html += `<div class="row-btns" id="actionRow"></div>`;
+  html += `<div class="nav-bottom">`;
+  html += `<button class="btn-ghost" id="backBtn" ${current===0?'disabled style="visibility:hidden;"':''}>&larr; Back</button>`;
+  html += `<button class="btn-ghost" id="skipBtn">Skip &rarr;</button>`;
+  html += `</div>`;
+  html += `</div>`;
+
+  area.innerHTML = html;
+  wireStepEvents(step);
+}
+
+function renderOptions(options, correct, fixedOrder){
+  const opts = fixedOrder ? options : shuffle(options);
+  let html = `<div class="options" id="optionsWrap">`;
+  opts.forEach(opt=>{
+    html += `<button class="opt" data-value="${escapeAttr(opt)}">${opt}</button>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function escapeAttr(s){
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+}
+
+function wireStepEvents(step){
+  const current = state.current;
+  const ans = state.answers[current];
+  const actionRow = document.getElementById('actionRow');
+  const feedback = document.getElementById('feedbackMsg');
+
+  document.getElementById('backBtn').addEventListener('click', ()=>{
+    if(current>0){ state.current--; renderStep(); }
+  });
+  document.getElementById('skipBtn').addEventListener('click', ()=> advance());
+
+  if(step.type === 'takeaway'){
+    const ta = document.getElementById('openAnswer');
+    ta.addEventListener('input', ()=>{ ans.openText = ta.value; });
+    actionRow.innerHTML = `<button class="btn-primary" id="nextBtn">Next Question</button>`;
+    document.getElementById('nextBtn').addEventListener('click', ()=>{ ans.openText = ta.value; ans.status='recorded'; advance(); });
+    return;
+  }
+
+  if(step.type === 'wordArrange'){
+    const words = step.data.words;
+    const poolEl = document.getElementById('wordPool');
+    const stripEl = document.getElementById('answerStrip');
+    const clearBtn = document.getElementById('clearArrangeBtn');
+
+    function draw(){
+      const lockClass = ans.status==='correct' ? ' locked-correct' : '';
+      stripEl.innerHTML = ans.placed.length
+        ? ans.placed.map(idx=>`<button class="word-tile placed-tile${lockClass}" data-idx="${idx}">${words[idx]}</button>`).join('')
+        : `<span class="placeholder-text">Tap words below to build the ayah here…</span>`;
+      const remaining = ans.shuffledOrder.filter(idx=>!ans.placed.includes(idx));
+      poolEl.innerHTML = remaining.map(idx=>`<button class="word-tile" data-idx="${idx}">${words[idx]}</button>`).join('');
+
+      if(ans.status !== 'correct'){
+        poolEl.querySelectorAll('.word-tile').forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            ans.placed.push(parseInt(btn.dataset.idx));
+            draw();
+            updateActionRow();
+          });
+        });
+        stripEl.querySelectorAll('.word-tile').forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            const idx = parseInt(btn.dataset.idx);
+            ans.placed = ans.placed.filter(i=>i!==idx);
+            draw();
+            updateActionRow();
+          });
+        });
+      }
+    }
+
+    function updateActionRow(){
+      if(ans.status==='correct') return;
+      if(ans.placed.length === words.length){
+        actionRow.innerHTML = `<button class="btn-primary" id="confirmArrangeBtn">Confirm Answer</button>`;
+        document.getElementById('confirmArrangeBtn').addEventListener('click', ()=>{
+          ans.attempts++;
+          const isCorrect = ans.placed.every((v,i)=>v===i);
+          if(isCorrect){
+            ans.status = 'correct';
+            if(ans.attempts===1) ans.firstTry = true;
+            feedback.textContent = "Correct! ✅";
+            feedback.className = "feedback correct";
+            clearBtn.style.display = 'none';
+            draw();
+            actionRow.innerHTML = `<button class="btn-primary" id="nextBtn">Next Question</button>`;
+            document.getElementById('nextBtn').addEventListener('click', advance);
+          } else {
+            feedback.textContent = "Not quite — try again!";
+            feedback.className = "feedback incorrect";
+            actionRow.innerHTML = `<button class="btn-secondary" id="tryAgainArrangeBtn">Try Again</button>`;
+            document.getElementById('tryAgainArrangeBtn').addEventListener('click', ()=>{
+              ans.placed = [];
+              ans.shuffledOrder = shuffle([...Array(words.length).keys()]);
+              feedback.textContent = '';
+              feedback.className = 'feedback';
+              actionRow.innerHTML = '';
+              draw();
+            });
+          }
+        });
+      } else {
+        actionRow.innerHTML = '';
+      }
+    }
+
+    clearBtn.addEventListener('click', ()=>{
+      if(ans.status==='correct') return;
+      ans.placed = [];
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      actionRow.innerHTML = '';
+      draw();
+    });
+
+    if(ans.status === 'correct'){
+      feedback.textContent = "Correct! ✅";
+      feedback.className = "feedback correct";
+      clearBtn.style.display = 'none';
+      actionRow.innerHTML = `<button class="btn-primary" id="nextBtn">Next Question</button>`;
+      document.getElementById('nextBtn').addEventListener('click', advance);
+    }
+
+    draw();
+    updateActionRow();
+    return;
+  }
+
+  // MCQ types
+  let selectedBtn = null;
+  const optButtons = document.querySelectorAll('#optionsWrap .opt');
+
+  // restore previous state visuals if already answered correctly
+  if(ans.status === 'correct'){
+    optButtons.forEach(b=>{
+      if(b.dataset.value === ans.selected){ b.classList.add('correct-flash'); }
+      b.disabled = true;
+    });
+    feedback.textContent = "Correct! ✅";
+    feedback.className = "feedback correct";
+    actionRow.innerHTML = `<button class="btn-primary" id="nextBtn">Next Question</button>`;
+    document.getElementById('nextBtn').addEventListener('click', advance);
+    return;
+  }
+
+  optButtons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      optButtons.forEach(b=>b.classList.remove('chosen'));
+      btn.classList.add('chosen');
+      selectedBtn = btn;
+      renderConfirmRow();
+    });
+  });
+
+  function renderConfirmRow(){
+    actionRow.innerHTML = `<button class="btn-primary" id="confirmBtn">Confirm Answer</button>`;
+    document.getElementById('confirmBtn').addEventListener('click', ()=>{
+      if(!selectedBtn) return;
+      const value = selectedBtn.dataset.value;
+      ans.attempts++;
+      ans.selected = value;
+      const isCorrect = value === step.data.correct;
+      if(isCorrect){
+        ans.status = 'correct';
+        if(ans.attempts===1) ans.firstTry = true;
+        selectedBtn.classList.add('correct-flash');
+        optButtons.forEach(b=>b.disabled=true);
+        feedback.textContent = "Correct! ✅";
+        feedback.className = "feedback correct";
+        actionRow.innerHTML = `<button class="btn-primary" id="nextBtn">Next Question</button>`;
+        document.getElementById('nextBtn').addEventListener('click', advance);
+      } else {
+        ans.status = 'incorrect';
+        selectedBtn.classList.add('incorrect-flash');
+        optButtons.forEach(b=>b.disabled=true);
+        feedback.textContent = "Not quite — try again!";
+        feedback.className = "feedback incorrect";
+        actionRow.innerHTML = `<button class="btn-secondary" id="tryAgainBtn">Try Again</button>`;
+        document.getElementById('tryAgainBtn').addEventListener('click', ()=>{
+          optButtons.forEach(b=>{ b.disabled=false; b.classList.remove('chosen','incorrect-flash','correct-flash'); });
+          selectedBtn = null;
+          feedback.textContent = '';
+          feedback.className = 'feedback';
+          actionRow.innerHTML = '';
+        });
+      }
+    });
+  }
+}
+
+function advance(){
+  if(state.current < state.steps.length - 1){
+    state.current++;
+    renderStep();
+  } else {
+    finishQuiz();
+  }
+}
+
+/* ================= END SCREEN / SCORING ================= */
+function finishQuiz(){
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-end').classList.remove('hidden');
+
+  const {steps, answers, surah, name, cls} = state;
+
+  function scoreFor(type){
+    let total=0, correctFirst=0, correctEver=0;
+    steps.forEach((s,i)=>{
+      if(s.type===type){
+        total++;
+        if(answers[i].status==='correct'){
+          correctEver++;
+          if(answers[i].firstTry) correctFirst++;
+        }
+      }
+    });
+    return {total, correctFirst, correctEver};
+  }
+
+  const wm = scoreFor('wordMeaning');
+  const wt = scoreFor('wordType');
+  const at = scoreFor('ayahTranslation');
+  const wa = scoreFor('wordArrange');
+
+  const totalMCQ = wm.total + wt.total + at.total + wa.total;
+  const totalFirst = wm.correctFirst + wt.correctFirst + at.correctFirst + wa.correctFirst;
+  const totalEver = wm.correctEver + wt.correctEver + at.correctEver + wa.correctEver;
+
+  document.getElementById('scoreBig').textContent = `${totalFirst}/${totalMCQ}`;
+  document.getElementById('scoreSub').textContent = `correct on first attempt (${totalEver}/${totalMCQ} correct overall after retries)`;
+
+  const breakdown = document.getElementById('scoreBreakdown');
+  breakdown.innerHTML = `
+    <div class="summary-line"><span>Word Meaning</span><span>${wm.correctFirst}/${wm.total}</span></div>
+    <div class="summary-line"><span>Word Type (Ism/Fi'l/Harf)</span><span>${wt.correctFirst}/${wt.total}</span></div>
+    <div class="summary-line"><span>Ayah Translation</span><span>${at.correctFirst}/${at.total}</span></div>
+    <div class="summary-line"><span>Ayah Arrangement (Memorisation)</span><span>${wa.correctFirst}/${wa.total}</span></div>
+    <div class="summary-line"><span>Takeaway Reflections</span><span>Not scored (${surah.takeaways.length} submitted)</span></div>
+  `;
+
+  // Build plain-text report
+  let report = `QUIZ SUBMISSION: ${surah.englishName}\n`;
+  report += `Student Name: ${name}\n`;
+  report += `Class: ${cls}\n`;
+  report += `Date: ${new Date().toLocaleString()}\n`;
+  report += `\n--- SCORE SUMMARY ---\n`;
+  report += `Word Meaning: ${wm.correctFirst}/${wm.total} (first attempt)\n`;
+  report += `Word Type (Ism/Fi'l/Harf): ${wt.correctFirst}/${wt.total} (first attempt)\n`;
+  report += `Ayah Translation: ${at.correctFirst}/${at.total} (first attempt)\n`;
+  report += `Ayah Arrangement (Memorisation): ${wa.correctFirst}/${wa.total} (first attempt)\n`;
+  report += `TOTAL: ${totalFirst}/${totalMCQ} on first attempt (${totalEver}/${totalMCQ} overall after retries)\n`;
+
+  report += `\n--- WORD MEANING DETAIL ---\n`;
+  surah.wordMeaning.forEach((q,i)=>{
+    const idx = steps.findIndex((s,si)=>s.type==='wordMeaning'&&s.index===i);
+    const a = answers[idx];
+    report += `${q.word} — ${a.status==='correct' ? 'Correct' : 'Not answered correctly'} (attempts: ${a.attempts})\n`;
+  });
+
+  report += `\n--- WORD TYPE DETAIL ---\n`;
+  surah.wordType.forEach((q,i)=>{
+    const idx = steps.findIndex((s,si)=>s.type==='wordType'&&s.index===i);
+    const a = answers[idx];
+    report += `${q.word} — ${a.status==='correct' ? 'Correct' : 'Not answered correctly'} (attempts: ${a.attempts})\n`;
+  });
+
+  report += `\n--- AYAH TRANSLATION DETAIL ---\n`;
+  surah.ayahTranslation.forEach((q,i)=>{
+    const idx = steps.findIndex((s,si)=>s.type==='ayahTranslation'&&s.index===i);
+    const a = answers[idx];
+    report += `Ayah "${q.ar}" — ${a.status==='correct' ? 'Correct' : 'Not answered correctly'} (attempts: ${a.attempts})\n`;
+  });
+
+  report += `\n--- AYAH ARRANGEMENT (MEMORISATION) DETAIL ---\n`;
+  steps.forEach((s,idx)=>{
+    if(s.type==='wordArrange'){
+      const a = answers[idx];
+      report += `Ayah ${s.data.ayah.num} — ${a.status==='correct' ? 'Correct' : 'Not answered correctly'} (attempts: ${a.attempts})\n`;
+    }
+  });
+
+  report += `\n--- TAKEAWAYS & PRACTICAL APPLICATION (not scored) ---\n`;
+  let reflectionsText = '';
+  surah.takeaways.forEach((q,i)=>{
+    const idx = steps.findIndex((s,si)=>s.type==='takeaway'&&s.index===i);
+    const a = answers[idx];
+    const answerText = a.openText && a.openText.trim() ? a.openText.trim() : '(no answer given)';
+    report += `\n${q.ref}: ${q.ar}\nPrompt: ${q.prompt}\nStudent's answer: ${answerText}\n`;
+    reflectionsText += `${q.ref} — ${q.prompt}\nAnswer: ${answerText}\n\n`;
+  });
+
+  document.getElementById('reportBox').value = report;
+
+  function downloadReport(){
+    const blob = new Blob([report], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Quiz_${surah.subtitle.replace(/\s+/g,'_')}_${name.replace(/\s+/g,'_')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById('submitSheetBtn').onclick = ()=>{
+    const statusEl = document.getElementById('submitStatus');
+    const btn = document.getElementById('submitSheetBtn');
+    btn.disabled = true;
+    statusEl.textContent = "Submitting…";
+    statusEl.className = "feedback";
+
+    const payload = {
+      name, cls,
+      surah: surah.englishName,
+      wordMeaning: `${wm.correctFirst}/${wm.total}`,
+      wordType: `${wt.correctFirst}/${wt.total}`,
+      ayahTranslation: `${at.correctFirst}/${at.total}`,
+      ayahArrange: `${wa.correctFirst}/${wa.total}`,
+      totalFirst: `${totalFirst}/${totalMCQ}`,
+      totalEver: `${totalEver}/${totalMCQ}`,
+      reflections: reflectionsText.trim()
+    };
+
+    // mode:'no-cors' is used deliberately: Apps Script Web Apps don't return
+    // CORS headers, so a normal 'cors' fetch would reject even after a
+    // successful submission. 'no-cors' lets the request go through and
+    // resolves regardless, since we don't need to read the response back.
+    fetch(SHEET_WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(payload)
+    }).then(()=>{
+      statusEl.textContent = "Results submitted ✅";
+      statusEl.className = "feedback correct";
+      btn.textContent = "Submitted";
+    }).catch(()=>{
+      statusEl.textContent = "Couldn't submit — check your internet connection, or use Download/Copy below instead.";
+      statusEl.className = "feedback incorrect";
+      btn.disabled = false;
+    });
+  };
+
+  document.getElementById('downloadBtn').onclick = downloadReport;
+
+  document.getElementById('copyBtn').onclick = ()=>{
+    const box = document.getElementById('reportBox');
+    box.select();
+    document.execCommand('copy');
+    const btn = document.getElementById('copyBtn');
+    const old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(()=>btn.textContent=old, 1500);
+  };
+
+  document.getElementById('restartBtn').onclick = ()=>{
+    document.getElementById('screen-end').classList.add('hidden');
+    document.getElementById('screen-start').classList.remove('hidden');
+    document.querySelectorAll('.surah-card').forEach(c=>c.classList.remove('selected'));
+    selectedSurahKey = null;
+    checkStartReady();
+  };
+}
+</script>
+</body>
+</html>
