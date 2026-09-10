@@ -7,6 +7,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+  @font-face{
+    /* KFGQPC Uthmanic Script HAFS — the official Madinah Mushaf font, built
+       from the authoritative Uthmani text, so every diacritic combination
+       (including rare triple-stacks) is pre-shaped correctly. Used as the
+       primary Arabic font since this page is hosted on a real domain
+       (GitHub Pages) with no restrictions on loading third-party fonts. */
+    font-family:'KFGQPC Uthmanic Script HAFS';
+    src:url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+  }
   :root{
     /* AtTartil teaching-materials palette */
     --parchment:#faf6ea;
@@ -36,7 +49,7 @@
     line-height:1.55;
   }
   .arabic{
-    font-family:'Scheherazade New','Amiri',serif;
+    font-family:'KFGQPC Uthmanic Script HAFS','Scheherazade New','Amiri',serif;
     direction:rtl;
     unicode-bidi:isolate;
   }
@@ -111,7 +124,7 @@
     background:var(--teal-tint);
   }
   .surah-card .sname{font-weight:600;color:var(--emerald);}
-  .surah-card .sarabic{font-family:'Scheherazade New','Amiri',serif;font-size:1.4rem;color:var(--teal-deep);direction:rtl;}
+  .surah-card .sarabic{font-family:'KFGQPC Uthmanic Script HAFS','Scheherazade New','Amiri',serif;font-size:1.4rem;color:var(--teal-deep);direction:rtl;}
   button{
     font-family:'Lora',serif;
     cursor:pointer;
@@ -177,7 +190,7 @@
     margin-bottom:18px;
   }
   .ayah-box .ar{
-    font-family:'Scheherazade New','Amiri',serif;
+    font-family:'KFGQPC Uthmanic Script HAFS','Scheherazade New','Amiri',serif;
     font-size:1.9rem;
     line-height:2.6;
     color:var(--emerald);
@@ -239,7 +252,7 @@
     min-height:44px;
   }
   .word-tile{
-    font-family:'Scheherazade New','Amiri',serif;
+    font-family:'KFGQPC Uthmanic Script HAFS','Scheherazade New','Amiri',serif;
     font-size:1.35rem;
     padding:8px 16px;
     border:1.5px solid var(--border);
