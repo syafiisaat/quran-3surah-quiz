@@ -393,84 +393,6 @@ const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzQab0PtSML0qs
 
 /* ================= SURAH DATA ================= */
 const SURAHS = {
-  kawthar: {
-    id:"kawthar",
-    englishName:"Surah Al-Kawthar (108)",
-    arabicName:"سُورَةُ الْكَوْثَر",
-    subtitle:"Abundance",
-    ayahs:[
-      {num:1, ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", en:"Indeed, We have granted you ˹O Prophet˺ abundant goodness."},
-      {num:2, ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", en:"So pray and sacrifice to your Lord ˹alone˺."},
-      {num:3, ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", en:"Only the one who hates you is truly cut off ˹from any goodness˺."}
-    ],
-    wordMeaning:[
-      {word:"أَعْطَيْنَٰكَ", correct:"We have granted you", options:["We have granted you","You have granted us","We will grant you","They granted you"]},
-      {word:"ٱلْكَوْثَرَ", correct:"abundant goodness", options:["abundant goodness","a small river","the enemy","patience"]},
-      {word:"صَلِّ", correct:"pray", options:["pray","sacrifice","give","wait"]},
-      {word:"ٱنْحَرْ", correct:"sacrifice", options:["sacrifice","pray","fast","travel"]},
-      {word:"شَانِئَكَ", correct:"the one who hates you", options:["the one who hates you","the one who loves you","your friend","your Lord"]},
-      {word:"ٱلْأَبْتَرُ", correct:"cut off (from all good)", options:["cut off (from all good)","abundant in goodness","victorious","patient"]}
-    ],
-    wordType:[
-      {word:"أَعْطَيْنَٰكَ", correct:"Fi'l (Verb)"},
-      {word:"ٱلْكَوْثَرَ", correct:"Ism (Noun)"},
-      {word:"صَلِّ", correct:"Fi'l (Verb)"},
-      {word:"إِنَّ", correct:"Harf (Particle)"},
-      {word:"لِ (in لِرَبِّكَ)", correct:"Harf (Particle)"},
-      {word:"شَانِئَكَ", correct:"Ism (Noun)"},
-      {word:"هُوَ", correct:"Ism (Noun)"}
-    ],
-    ayahTranslation:[
-      {ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", correct:"Indeed, We have granted you ˹O Prophet˺ abundant goodness.", options:["Indeed, We have granted you ˹O Prophet˺ abundant goodness.","Indeed, We have tested you with great hardship.","Indeed, We have forgiven you a grave sin.","Indeed, We have chosen you above all people."]},
-      {ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", correct:"So pray and sacrifice to your Lord ˹alone˺.", options:["So pray and sacrifice to your Lord ˹alone˺.","So fast and give charity for your Lord's sake.","So travel and seek knowledge for your Lord.","So be patient and grateful to your Lord."]},
-      {ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", correct:"Only the one who hates you is truly cut off ˹from any goodness˺.", options:["Only the one who hates you is truly cut off ˹from any goodness˺.","Only the one who helps you will be rewarded.","Only the one who follows you will succeed.","Only the one who loves you is truly blessed."]}
-    ],
-    takeaways:[
-      {ref:"Ayah 1", ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", prompt:"Allah reminds the Prophet ﷺ of a great blessing given to him. What lesson can we learn about recognising Allah's blessings in our own lives?"},
-      {ref:"Ayah 2", ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", prompt:"This ayah links gratitude for blessings to worship (prayer and sacrifice). What does this teach us about how we should respond when we receive blessings?"},
-      {ref:"Ayah 3", ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", prompt:"This ayah addresses those who mocked the Prophet ﷺ. What takeaway can we draw about how Allah judges true honour and legacy?"}
-    ]
-  },
-
-  asr: {
-    id:"asr",
-    englishName:"Surah Al-'Asr (103)",
-    arabicName:"سُورَةُ الْعَصْر",
-    subtitle:"Time",
-    ayahs:[
-      {num:1, ar:"وَٱلْعَصْرِ", en:"By the ˹passage of˺ time!"},
-      {num:2, ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", en:"Surely humanity is in ˹grave˺ loss,"},
-      {num:3, ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", en:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance."}
-    ],
-    wordMeaning:[
-      {word:"ٱلْعَصْرِ", correct:"time", options:["time","the night","wealth","patience"]},
-      {word:"ٱلْإِنسَٰنَ", correct:"mankind / humanity", options:["mankind / humanity","the believer","the disbeliever","the Prophet"]},
-      {word:"خُسْرٍ", correct:"loss", options:["loss","gain","guidance","reward"]},
-      {word:"ءَامَنُوا۟", correct:"they believed", options:["they believed","they disbelieved","they forgot","they travelled"]},
-      {word:"ٱلصَّٰلِحَٰتِ", correct:"righteous deeds", options:["righteous deeds","harmful deeds","empty words","wealth"]},
-      {word:"ٱلصَّبْرِ", correct:"patience / perseverance", options:["patience / perseverance","haste","anger","wealth"]}
-    ],
-    wordType:[
-      {word:"وَ (in وَٱلْعَصْرِ)", correct:"Harf (Particle)"},
-      {word:"ٱلْعَصْرِ", correct:"Ism (Noun)"},
-      {word:"إِنَّ", correct:"Harf (Particle)"},
-      {word:"ٱلْإِنسَٰنَ", correct:"Ism (Noun)"},
-      {word:"ءَامَنُوا۟", correct:"Fi'l (Verb)"},
-      {word:"تَوَاصَوْا۟", correct:"Fi'l (Verb)"},
-      {word:"ٱلَّذِينَ", correct:"Ism (Noun)"}
-    ],
-    ayahTranslation:[
-      {ar:"وَٱلْعَصْرِ", correct:"By the ˹passage of˺ time!", options:["By the ˹passage of˺ time!","By the light of day!","By the darkness of night!","By the mercy of Allah!"]},
-      {ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", correct:"Surely humanity is in ˹grave˺ loss,", options:["Surely humanity is in ˹grave˺ loss,","Surely humanity is truly blessed,","Surely humanity will be forgiven,","Surely humanity is asleep,"]},
-      {ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", correct:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.", options:["except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.","except those who are wealthy and give charity generously.","except those who pray five times and fast every Monday.","except those who repent sincerely and seek forgiveness daily."]}
-    ],
-    takeaways:[
-      {ref:"Ayah 1", ar:"وَٱلْعَصْرِ", prompt:"Allah swears by time itself. What does this teach us about the value and importance of time in our lives?"},
-      {ref:"Ayah 2", ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", prompt:"Allah describes mankind, in general, as being in loss. What could this loss refer to, and how does it relate to how we spend our lives?"},
-      {ref:"Ayah 3", ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", prompt:"Four qualities are mentioned as the way out of loss. What practical steps can you take to embody these four qualities in your daily life?"}
-    ]
-  },
-
   takathur: {
     id:"takathur",
     englishName:"Surah Al-Takāthur (102)",
@@ -523,6 +445,133 @@ const SURAHS = {
       {ref:"Ayah 5", ar:"كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ", prompt:"This ayah speaks of knowing something 'with certainty' (yaqīn). How can striving for certainty in faith change the way we live?"},
       {ref:"Ayahs 6–7", ar:"لَتَرَوُنَّ ٱلْجَحِيمَ ۝ ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ", prompt:"These ayahs describe seeing the Hellfire, first in general and then 'with the eye of certainty'. What does this progression teach us about the reality of the Hereafter?"},
       {ref:"Ayah 8", ar:"ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ", prompt:"The final ayah states we will be questioned about our worldly pleasures/blessings. What practical steps can we take to prepare for this questioning?"}
+    ]
+  },
+
+  asr: {
+    id:"asr",
+    englishName:"Surah Al-'Asr (103)",
+    arabicName:"سُورَةُ الْعَصْر",
+    subtitle:"Time",
+    ayahs:[
+      {num:1, ar:"وَٱلْعَصْرِ", en:"By the ˹passage of˺ time!"},
+      {num:2, ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", en:"Surely humanity is in ˹grave˺ loss,"},
+      {num:3, ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", en:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance."}
+    ],
+    wordMeaning:[
+      {word:"ٱلْعَصْرِ", correct:"time", options:["time","the night","wealth","patience"]},
+      {word:"ٱلْإِنسَٰنَ", correct:"mankind / humanity", options:["mankind / humanity","the believer","the disbeliever","the Prophet"]},
+      {word:"خُسْرٍ", correct:"loss", options:["loss","gain","guidance","reward"]},
+      {word:"ءَامَنُوا۟", correct:"they believed", options:["they believed","they disbelieved","they forgot","they travelled"]},
+      {word:"ٱلصَّٰلِحَٰتِ", correct:"righteous deeds", options:["righteous deeds","harmful deeds","empty words","wealth"]},
+      {word:"ٱلصَّبْرِ", correct:"patience / perseverance", options:["patience / perseverance","haste","anger","wealth"]}
+    ],
+    wordType:[
+      {word:"وَ (in وَٱلْعَصْرِ)", correct:"Harf (Particle)"},
+      {word:"ٱلْعَصْرِ", correct:"Ism (Noun)"},
+      {word:"إِنَّ", correct:"Harf (Particle)"},
+      {word:"ٱلْإِنسَٰنَ", correct:"Ism (Noun)"},
+      {word:"ءَامَنُوا۟", correct:"Fi'l (Verb)"},
+      {word:"تَوَاصَوْا۟", correct:"Fi'l (Verb)"},
+      {word:"ٱلَّذِينَ", correct:"Ism (Noun)"}
+    ],
+    ayahTranslation:[
+      {ar:"وَٱلْعَصْرِ", correct:"By the ˹passage of˺ time!", options:["By the ˹passage of˺ time!","By the light of day!","By the darkness of night!","By the mercy of Allah!"]},
+      {ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", correct:"Surely humanity is in ˹grave˺ loss,", options:["Surely humanity is in ˹grave˺ loss,","Surely humanity is truly blessed,","Surely humanity will be forgiven,","Surely humanity is asleep,"]},
+      {ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", correct:"except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.", options:["except those who have faith, do good, and urge each other to the truth, and urge each other to perseverance.","except those who are wealthy and give charity generously.","except those who pray five times and fast every Monday.","except those who repent sincerely and seek forgiveness daily."]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"وَٱلْعَصْرِ", prompt:"Allah swears by time itself. What does this teach us about the value and importance of time in our lives?"},
+      {ref:"Ayah 2", ar:"إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", prompt:"Allah describes mankind, in general, as being in loss. What could this loss refer to, and how does it relate to how we spend our lives?"},
+      {ref:"Ayah 3", ar:"إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ", prompt:"Four qualities are mentioned as the way out of loss. What practical steps can you take to embody these four qualities in your daily life?"}
+    ]
+  },
+
+  kawthar: {
+    id:"kawthar",
+    englishName:"Surah Al-Kawthar (108)",
+    arabicName:"سُورَةُ الْكَوْثَر",
+    subtitle:"Abundance",
+    ayahs:[
+      {num:1, ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", en:"Indeed, We have granted you ˹O Prophet˺ abundant goodness."},
+      {num:2, ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", en:"So pray and sacrifice to your Lord ˹alone˺."},
+      {num:3, ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", en:"Only the one who hates you is truly cut off ˹from any goodness˺."}
+    ],
+    wordMeaning:[
+      {word:"أَعْطَيْنَٰكَ", correct:"We have granted you", options:["We have granted you","You have granted us","We will grant you","They granted you"]},
+      {word:"ٱلْكَوْثَرَ", correct:"abundant goodness", options:["abundant goodness","a small river","the enemy","patience"]},
+      {word:"صَلِّ", correct:"pray", options:["pray","sacrifice","give","wait"]},
+      {word:"ٱنْحَرْ", correct:"sacrifice", options:["sacrifice","pray","fast","travel"]},
+      {word:"شَانِئَكَ", correct:"the one who hates you", options:["the one who hates you","the one who loves you","your friend","your Lord"]},
+      {word:"ٱلْأَبْتَرُ", correct:"cut off (from all good)", options:["cut off (from all good)","abundant in goodness","victorious","patient"]}
+    ],
+    wordType:[
+      {word:"أَعْطَيْنَٰكَ", correct:"Fi'l (Verb)"},
+      {word:"ٱلْكَوْثَرَ", correct:"Ism (Noun)"},
+      {word:"صَلِّ", correct:"Fi'l (Verb)"},
+      {word:"إِنَّ", correct:"Harf (Particle)"},
+      {word:"لِ (in لِرَبِّكَ)", correct:"Harf (Particle)"},
+      {word:"شَانِئَكَ", correct:"Ism (Noun)"},
+      {word:"هُوَ", correct:"Ism (Noun)"}
+    ],
+    ayahTranslation:[
+      {ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", correct:"Indeed, We have granted you ˹O Prophet˺ abundant goodness.", options:["Indeed, We have granted you ˹O Prophet˺ abundant goodness.","Indeed, We have tested you with great hardship.","Indeed, We have forgiven you a grave sin.","Indeed, We have chosen you above all people."]},
+      {ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", correct:"So pray and sacrifice to your Lord ˹alone˺.", options:["So pray and sacrifice to your Lord ˹alone˺.","So fast and give charity for your Lord's sake.","So travel and seek knowledge for your Lord.","So be patient and grateful to your Lord."]},
+      {ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", correct:"Only the one who hates you is truly cut off ˹from any goodness˺.", options:["Only the one who hates you is truly cut off ˹from any goodness˺.","Only the one who helps you will be rewarded.","Only the one who follows you will succeed.","Only the one who loves you is truly blessed."]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", prompt:"Allah reminds the Prophet ﷺ of a great blessing given to him. What lesson can we learn about recognising Allah's blessings in our own lives?"},
+      {ref:"Ayah 2", ar:"فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", prompt:"This ayah links gratitude for blessings to worship (prayer and sacrifice). What does this teach us about how we should respond when we receive blessings?"},
+      {ref:"Ayah 3", ar:"إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", prompt:"This ayah addresses those who mocked the Prophet ﷺ. What takeaway can we draw about how Allah judges true honour and legacy?"}
+    ]
+  },
+
+  kafirun: {
+    id:"kafirun",
+    englishName:"Surah Al-Kāfirūn (109)",
+    arabicName:"سُورَةُ الْكَافِرُون",
+    subtitle:"The Disbelievers",
+    ayahs:[
+      {num:1, ar:"قُلْ يَٰٓأَيُّهَا ٱلْكَٰفِرُونَ", en:"Say, ˹O Prophet,˺ “O you disbelievers!"},
+      {num:2, ar:"لَآ أَعْبُدُ مَا تَعْبُدُونَ", en:"I do not worship what you all worship,"},
+      {num:3, ar:"وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ", en:"nor do you all worship what I worship."},
+      {num:4, ar:"وَلَآ أَنَا۠ عَابِدٌ مَّا عَبَدتُّمْ", en:"I will never worship what you all worship,"},
+      {num:5, ar:"وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ", en:"nor will you all ever worship what I worship."},
+      {num:6, ar:"لَكُمْ دِينُكُمْ وَلِىَ دِينِ", en:"You all have your way, and I have my Way.”"}
+    ],
+    wordMeaning:[
+      {word:"ٱلْكَٰفِرُونَ", correct:"the disbelievers", options:["the disbelievers","the believers","the worshippers","the wrongdoers"]},
+      {word:"أَعْبُدُ", correct:"I worship", options:["I worship","I forbid","I forget","I fear"]},
+      {word:"تَعْبُدُونَ", correct:"you all worship", options:["you all worship","you all forget","you all forbid","you all travel"]},
+      {word:"عَابِدٌ", correct:"a worshipper", options:["a worshipper","a believer","a wanderer","a stranger"]},
+      {word:"عَبَدتُّمْ", correct:"you all worshipped", options:["you all worshipped","you all forgot","you all forbade","you all travelled"]},
+      {word:"دِينُكُمْ", correct:"your religion / way", options:["your religion / way","your wealth","your family","your land"]},
+      {word:"دِينِ", correct:"my religion / way", options:["my religion / way","my wealth","my family","my land"]}
+    ],
+    wordType:[
+      {word:"قُلْ", correct:"Fi'l (Verb)"},
+      {word:"ٱلْكَٰفِرُونَ", correct:"Ism (Noun)"},
+      {word:"لَا", correct:"Harf (Particle)"},
+      {word:"أَعْبُدُ", correct:"Fi'l (Verb)"},
+      {word:"مَا", correct:"Ism (Noun)"},
+      {word:"تَعْبُدُونَ", correct:"Fi'l (Verb)"},
+      {word:"أَنتُمْ", correct:"Ism (Noun)"},
+      {word:"عَبَدتُّمْ", correct:"Fi'l (Verb)"},
+      {word:"لَ (in لَكُمْ)", correct:"Harf (Particle)"}
+    ],
+    ayahTranslation:[
+      {ar:"قُلْ يَٰٓأَيُّهَا ٱلْكَٰفِرُونَ", correct:"Say, ˹O Prophet,˺ “O you disbelievers!", options:["Say, ˹O Prophet,˺ “O you disbelievers!","Say, ˹O Prophet,˺ “O you believers!","Say, ˹O Prophet,˺ “O you people of the Book!","Say, ˹O Prophet,˺ “O you polytheists, rejoice!"]},
+      {ar:"لَآ أَعْبُدُ مَا تَعْبُدُونَ", correct:"I do not worship what you all worship,", options:["I do not worship what you all worship,","I will always worship what you all worship,","I do not care what you all believe,","I forgive what you all worship,"]},
+      {ar:"وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ", correct:"nor do you all worship what I worship.", options:["nor do you all worship what I worship.","nor do you all forbid what I worship.","nor do you all forget what I command.","nor do you all follow what I say."]},
+      {ar:"وَلَآ أَنَا۠ عَابِدٌ مَّا عَبَدتُّمْ", correct:"I will never worship what you all worship,", options:["I will never worship what you all worship,","I will always worship what you all worship,","I might worship what you all worship,","I no longer remember what you all worship,"]},
+      {ar:"لَكُمْ دِينُكُمْ وَلِىَ دِينِ", correct:"You all have your way, and I have my Way.”", options:["You all have your way, and I have my Way.”","You all have my way, and I have your way.”","You all have your wealth, and I have my faith.”","You all have your gods, and I have my Lord.”"]}
+    ],
+    takeaways:[
+      {ref:"Ayah 1", ar:"قُلْ يَٰٓأَيُّهَا ٱلْكَٰفِرُونَ", prompt:"This Surah opens with a direct command to 'Say'. What does this teach us about the importance of clearly stating our beliefs, even to those who disagree with us?"},
+      {ref:"Ayah 2", ar:"لَآ أَعْبُدُ مَا تَعْبُدُونَ", prompt:"The Prophet ﷺ is taught to clearly reject worshipping what the disbelievers worship. What does this teach us about drawing clear lines when it comes to matters of faith?"},
+      {ref:"Ayahs 3 & 5", ar:"وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ", prompt:"This point is repeated twice in the Surah, word for word. Why do you think Allah repeats this statement, and what does the repetition emphasize?"},
+      {ref:"Ayah 4", ar:"وَلَآ أَنَا۠ عَابِدٌ مَّا عَبَدتُّمْ", prompt:"This ayah affirms that the Prophet ﷺ will never worship what they worshipped, even in the future. What does this teach us about consistency and firmness in our beliefs over time?"},
+      {ref:"Ayah 6", ar:"لَكُمْ دِينُكُمْ وَلِىَ دِينِ", prompt:"This famous closing ayah is often cited as a foundation for religious tolerance. What does it teach us about how to coexist peacefully with people of different beliefs, while still holding firmly to our own?"}
     ]
   }
 };
